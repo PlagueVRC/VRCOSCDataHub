@@ -40,6 +40,9 @@
     <ApplicationIcon>plague_13b_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BuildSoft.OscCore, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\BuildSoft.OscCore.1.1.1\lib\netstandard2.0\BuildSoft.OscCore.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -76,48 +79,6 @@
     <Compile Include="DataHubDesign.Designer.cs">
       <DependentUpon>DataHubDesign.cs</DependentUpon>
     </Compile>
-    <Compile Include="OSC\BuildSoft.OscCore\Constant.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Delegates.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\Runtime\Collections\BlobHandleDictionaryMethods.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\Runtime\Collections\BlobHandleHashSetMethods.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\Runtime\Collections\BlobStringDictionary.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\Runtime\Compiler\Il2CppSetOptionAttribute.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\Runtime\Structs\BlobHandle.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\Runtime\Structs\BlobString.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\NtpTimestamp\ExtensionMethods.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\NtpTimestamp\NtpTimestamp.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Dependencies\NtpTimestamp\TimeConstants.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Enums\AddressType.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Enums\TypeTag.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Enums\VectorElementFilters.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Extensions\BlobHandleExtensionMethods.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.AsciiChar.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Blob.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Boolean.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Color32.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Float.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Float64.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Int.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Int64.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.MIDI.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Null.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.String.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Message\OscMessageValues.Timestamp.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\OscActionPair.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\OscAddressSpace.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\OscClient.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\OscParser.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\OscServer.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\OscSocket.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\OscWriter.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Structs\MidiMessage.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\UnityObjects\Color32.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\UnityObjects\Vector2.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\UnityObjects\Vector3.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Utility\ExtensionMethods.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Utility\OscAddressMethods.cs" />
-    <Compile Include="OSC\BuildSoft.OscCore\Utility\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCPLib\TCP_Client.cs" />
@@ -134,9 +95,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\LICENSE" />
-    <None Include="OSC\BuildSoft.OscCore\Dependencies\BlobHandles\README.md" />
-    <None Include="OSC\BuildSoft.OscCore\Dependencies\NtpTimestamp\README.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
