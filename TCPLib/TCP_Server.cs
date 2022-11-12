@@ -42,47 +42,51 @@ namespace RemoteWindow.TCPLib
                 {
                     if (instance.server.Pending())
                     {
-                        var client = await instance.server.AcceptTcpClientAsync();
-
-                        instance.NetStream = () => client.GetStream();
-
-                        instance.OnClientConnect?.Invoke();
-
-                        while (client.Connected)
+                        Task.Run(async () =>
                         {
-                            if (client.Available > 0 && !instance.IsReceiving)
+                            var client = await instance.server.AcceptTcpClientAsync();
+
+                            instance.NetStream = () => client.GetStream();
+
+                            instance.OnClientConnect?.Invoke();
+
+                            while (client.Connected)
                             {
-                                instance.IsReceiving = true;
-
-                                var localBuffer = new byte[client.Available];
-
-                                var receivedLength = instance.NetStream().Read(localBuffer, 0, localBuffer.Length);
-                                await instance.NetStream().FlushAsync();
-
-                                localBuffer = localBuffer.Take(receivedLength).ToArray();
-
-                                if (localBuffer.Any(o => o != 0))
+                                if (client.Available > 0 && !instance.IsReceiving)
                                 {
-                                    instance.buffer.AddRange(localBuffer);
+                                    instance.IsReceiving = true;
+
+                                    var localBuffer = new byte[client.Available];
+
+                                    var receivedLength = instance.NetStream().Read(localBuffer, 0, localBuffer.Length);
+                                    await instance.NetStream().FlushAsync();
+
+                                    localBuffer = localBuffer.Take(receivedLength).ToArray();
+
+                                    if (localBuffer.Any(o => o != 0))
+                                    {
+                                        instance.buffer.AddRange(localBuffer);
+                                    }
+                                }
+                                else if (client.Available <= 0)
+                                {
+                                    if (instance.buffer.Count > 0)
+                                    {
+                                        try
+                                        {
+                                            instance.OnDataReceived(instance.buffer.ToArray(), client);
+                                        }
+                                        catch
+                                        {
+                                        }
+
+                                        instance.buffer.Clear();
+                                    }
+
+                                    instance.IsReceiving = false;
                                 }
                             }
-                            else if (client.Available <= 0)
-                            {
-                                if (instance.buffer.Count > 0)
-                                {
-                                    try
-                                    {
-                                        instance.OnDataReceived(instance.buffer.ToArray(), client);
-                                    }
-                                    catch
-                                    {
-                                    }
-                                    instance.buffer.Clear();
-                                }
-
-                                instance.IsReceiving = false;
-                            }
-                        }
+                        });
                     }
                 }
             });
